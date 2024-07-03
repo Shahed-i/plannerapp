@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Tasks from './pages/Tasks.js';
+import Calendar from './pages/Calendar.js';
+import Focus from './pages/Focus.js';
+import Notes from './pages/Notes.js';
+import Profile from './pages/Profile.js';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Tasks />} />
+        <Route path="/Calendar" element={<Calendar />} />
+        <Route path="/Focus" element={<Focus />} />
+        <Route path="/Notes" element={<Notes />} />
+        <Route path="/Profile" element={<Profile />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
