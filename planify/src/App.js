@@ -1,4 +1,5 @@
 import './App.css';
+import './index.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Tasks from './pages/Tasks.js';
 import Calendar from './pages/Calendar.js';
