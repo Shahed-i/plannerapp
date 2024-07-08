@@ -72,5 +72,18 @@ body {
 
 /* Styling for navbar */
 .pink-purple-gradient_text {
-  @apply bg-gradient-to-r from-[#f276ac] to-[#bc7ad8] bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-[#f375a5] to-[#e91ca1] bg-clip-text text-transparent;
+}
+
+/* Styling for Tasks */
+.head-text {
+  @apply sm:text-4xl text-3xl font-semibold sm:leading-snug font-poppins;
+}
+
+.font-poppins {
+  font-family: Poppins, sans-serif;
+}
+
+.pink-gradient-text {
+  @apply bg-gradient-to-r from-[#9294ff] to-[#b62df1] bg-clip-text text-transparent;
 }
