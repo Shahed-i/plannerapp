@@ -3,10 +3,12 @@ import NavBar from '../components/NavBar';
 
 function Calendar() {
     return (
+        <div>
+        <NavBar />
         <h1>
-            <NavBar />
             This is Calendar page!
         </h1>
+        </div>
     );
     };
 export default Calendar;
