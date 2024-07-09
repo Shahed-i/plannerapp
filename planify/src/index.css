@@ -34,6 +34,16 @@ body {
   color: #1a202c; 
 }
 
+.note-textarea {
+  background-color: #ffcccc; 
+  width: 100%;
+  height: auto;
+}
+
+.note-textarea:focus {
+  outline: none;
+}
+
 .note-footer {
   display: flex;
   justify-content: space-between;
@@ -66,6 +76,7 @@ body {
 .notes-list {
   display: grid;
 	grid-gap: 1rem;
+  margin-left: 1rem;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)
 	);
 }
