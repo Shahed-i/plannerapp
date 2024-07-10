@@ -30,7 +30,7 @@ function NewCategoryName({ closePopup, addCategory }) {
                         value={categoryName}
                         onChange={handleInputChange}
                     />
-                    <button type="submit" className="px-4 my-2 py-2 mt-4 mb-2 bg-pink-200 rounded-2xl hover:bg-pink-300 hover:text-white font-medium">Done</button>
+                    <button type="submit" className="px-4 my-2 py-2 mt-4 mb-2 bg-pink-200 rounded-2xl hover:bg-pink-300 hover:text-white font-semibold">Done</button>
                 </form>
             </div>
         </div>
