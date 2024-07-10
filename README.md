@@ -1,1 +1,3 @@
 # plannerapp
+in progress!
+first release coming soon...
