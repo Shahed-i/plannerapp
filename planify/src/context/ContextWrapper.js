@@ -1,9 +1,4 @@
-import React, {
-    useState,
-    useEffect,
-    useReducer,
-    useMemo,
-  } from "react";
+import React, {useState, useEffect, useReducer, useMemo } from "react";
   import GlobalContext from "./GlobalContext";
   import dayjs from "dayjs";
   
@@ -31,7 +26,7 @@ import React, {
     const [monthIndex, setMonthIndex] = useState(dayjs().month());
     const [smallCalendarMonth, setSmallCalendarMonth] = useState(null);
     const [daySelected, setDaySelected] = useState(dayjs());
-    const [showEventModal, setShowEventModal] = useState(false);
+    const [showEventModel, setShowEventModel] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [labels, setLabels] = useState([]);
     const [savedEvents, dispatchCalEvent] = useReducer(
@@ -76,15 +71,20 @@ import React, {
     }, [smallCalendarMonth]);
   
     useEffect(() => {
-      if (!showEventModal) {
+      if (!showEventModel) {
         setSelectedEvent(null);
       }
-    }, [showEventModal]);
+    }, [showEventModel]);
   
     function updateLabel(label) {
       setLabels(
         labels.map((lbl) => (lbl.label === label.label ? label : lbl))
       );
+    }
+
+    function clearAllLabels() {
+      setLabels([]); // Clear all labels in state
+      localStorage.removeItem("savedEvents"); // Optionally clear localStorage if you want to reset saved events too
     }
   
     return (
@@ -96,8 +96,8 @@ import React, {
           setSmallCalendarMonth,
           daySelected,
           setDaySelected,
-          showEventModal,
-          setShowEventModal,
+          showEventModel,
+          setShowEventModel,
           dispatchCalEvent,
           selectedEvent,
           setSelectedEvent,
@@ -106,6 +106,7 @@ import React, {
           labels,
           updateLabel,
           filteredEvents,
+          clearAllLabels,
         }}
       >
         {props.children}
