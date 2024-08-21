@@ -2,71 +2,62 @@ import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import NotesList from '../components/Notes/NotesList';
 import NavBar from '../components/NavBar';
+import AddNotePopup from '../components/Notes/AddNotePopup';
 
 const Notes = () => {
-    const [notes, setNotes] = useState([
-        {
-            id: nanoid(),
-            text: 'This is my first note!',
-            date: '15/04/2021',
-        },
-        {
-            id: nanoid(),
-            text: 'This is my second note!',
-            date: '21/04/2021',
-        },
-        {
-            id: nanoid(),
-            text: 'This is my third note!',
-            date: '28/04/2021',
-        },
-        {
-            id: nanoid(),
-            text: 'This is my new note!',
-            date: '30/04/2021',
-        },
-    ]);
+    const [notes, setNotes] = useState([]);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     useEffect(() => {
         const savedNotes = JSON.parse(localStorage.getItem('react-notes-app-data'));
-
-        if (savedNotes) {
+        if (savedNotes && Array.isArray(savedNotes)) {
             setNotes(savedNotes);
         }
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('react-notes-app-data', JSON.stringify(notes));
+        if (notes.length > 0) {
+            localStorage.setItem('react-notes-app-data', JSON.stringify(notes));
+        }
     }, [notes]);
 
-    const addNote = (text) => {
+    const addNote = (text, color) => {
         const date = new Date();
         const newNote = {
             id: nanoid(),
             text: text,
             date: date.toLocaleDateString(),
+            color: color,
         };
-        const newNotes = [...notes, newNote];
-        setNotes(newNotes);
+        setNotes(prevNotes => [...prevNotes, newNote]);
     };
 
     const deleteNote = (id) => {
-        const newNotes = notes.filter((note) => note.id !== id);
-        setNotes(newNotes);
+        setNotes(prevNotes => prevNotes.filter((note) => note.id !== id));
+    };
+
+    const openPopup = () => {
+        setIsPopupOpen(true);
+    };
+
+    const closePopup = () => {
+        setIsPopupOpen(false);
     };
 
     return (
         <div>
             <NavBar />
-            <div className='container'>
-                <h1>This is Notes page!</h1>
-            
-                <NotesList
-                    notes={notes}
-                    handleAddNote={addNote}
-                    handleDeleteNote={deleteNote}
-                />
+            <div className="container">
+                <h1 className="head-text px-10 py-3">This is the Notes page!</h1>
+                <div className="flex ml-14 flex-wrap flex-row">
+                    <NotesList
+                        notes={notes}
+                        handleAddNote={addNote}
+                        handleDeleteNote={deleteNote}
+                    />
+                </div>
             </div>
+            {isPopupOpen && <AddNotePopup closePopup={closePopup} handleAddNote={addNote} />}
         </div>
     );
 };
