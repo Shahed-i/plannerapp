@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import CategoryBox from '../components/Tasks/CategoryBox';
 import NewCategory from '../components/Tasks/NewCategory';
@@ -10,6 +10,21 @@ function Tasks() {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null);
 
+    // Load categories from localStorage when the component mounts
+    useEffect(() => {
+        const savedCategories = JSON.parse(localStorage.getItem('task-categories-data'));
+        if (savedCategories && Array.isArray(savedCategories)) {
+            setCategories(savedCategories);
+        }
+    }, []);
+
+    // Save categories to localStorage whenever they change
+    useEffect(() => {
+        if (categories.length > 0) {
+            localStorage.setItem('task-categories-data', JSON.stringify(categories));
+        }
+    }, [categories]);
+
     const openPopup = () => {
         setIsPopupOpen(true);
     };
@@ -18,8 +33,8 @@ function Tasks() {
         setIsPopupOpen(false);
     };
 
-    const addCategory = (categoryName) => {
-        setCategories([categoryName, ...categories]);
+    const addCategory = (category) => {
+        setCategories([category, ...categories]);
         closePopup();
     };
 
@@ -41,7 +56,12 @@ function Tasks() {
                         <div className="flex ml-14 flex-wrap flex-row">
                         <NewCategory openPopup={openPopup} />
                         {categories.map((category, index) => (
-                            <CategoryBox key={index} name={category} openCategory={() => openCategory(category)} />
+                            <CategoryBox 
+                                key={index} 
+                                name={category.name} 
+                                color={category.color} 
+                                openCategory={() => openCategory(category)} 
+                            />
                         ))}
                         </div>
                     </>
