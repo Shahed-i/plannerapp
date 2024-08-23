@@ -1,7 +1,7 @@
 import Note from './Note';
 import NoteCreator from './NoteCreator';
 
-const NotesList = ({ notes, handleAddNote, handleDeleteNote }) => {
+const NotesList = ({ notes, handleAddNote, handleDeleteNote, handleSaveNote }) => {
     return (
         <div className='flex flex-wrap gap-6 ml-`'>
             <NoteCreator handleAddNote={handleAddNote} />
@@ -12,6 +12,7 @@ const NotesList = ({ notes, handleAddNote, handleDeleteNote }) => {
                     text={note.text}
                     date={note.date}
                     handleDeleteNote={handleDeleteNote}
+                    handleSaveNote={handleSaveNote}
 					color={note.color}
                 />
             ))}

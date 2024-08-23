@@ -25,7 +25,7 @@ function AddNotePopup({ closePopup, handleAddNote }) {
     const handleSaveClick = (event) => {
         event.preventDefault();
         if (noteText.trim().length > 0) {
-            handleAddNote(noteText, noteColor);  // Pass color to handleAddNote
+            handleAddNote(noteText, noteColor);  
             setNoteText('');
             closePopup();
         }

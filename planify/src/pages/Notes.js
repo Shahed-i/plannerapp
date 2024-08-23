@@ -36,6 +36,14 @@ const Notes = () => {
         setNotes(prevNotes => prevNotes.filter((note) => note.id !== id));
     };
 
+    const saveNote = (id, updatedText) => {
+        setNotes(prevNotes =>
+            prevNotes.map(note =>
+                note.id === id ? { ...note, text: updatedText } : note
+            )
+        );
+    };
+
     const openPopup = () => {
         setIsPopupOpen(true);
     };
@@ -54,6 +62,7 @@ const Notes = () => {
                         notes={notes}
                         handleAddNote={addNote}
                         handleDeleteNote={deleteNote}
+                        handleSaveNote={saveNote}  
                     />
                 </div>
             </div>

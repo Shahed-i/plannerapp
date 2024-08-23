@@ -23,4 +23,3 @@ const NoteCreator = ({ handleAddNote }) => {
 
 export default NoteCreator;
 
-//<div className={`rounded-3xl mx-3 my-2 p-6 min-w-[300px] min-h-[150px] flex flex-col justify-between ${color}`}>

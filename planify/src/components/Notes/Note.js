@@ -1,20 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DeleteIcon from '../../icons/DeleteIcon.png';
+import FullSizedNote from './FullSizedNote';
 
-const Note = ({ id, text, date, handleDeleteNote, color }) => {
+const Note = ({ id, text, date, handleDeleteNote, handleSaveNote, color }) => {
+    const [isFullNoteOpen, setIsFullNoteOpen] = useState(false);
+
+    const openFullNote = () => {
+        setIsFullNoteOpen(true);
+    };
+
+    const closeFullNote = () => {
+        setIsFullNoteOpen(false);
+    };
+
+    // Function to get the first line of text
+    const getFirstLine = (text) => {
+        return text.split('\n')[0];
+    };
+
+    // Function to truncate text and add ellipses if there's more content
+    const truncateText = (text, maxLength) => {
+        const firstLine = getFirstLine(text);
+        const hasMoreText = text.length > firstLine.length;
+        if (firstLine.length > maxLength) {
+            return firstLine.substring(0, maxLength) + '...';
+        }
+        return hasMoreText ? firstLine + '...' : firstLine;
+    };
+
     return (
-        <div className={`rounded-3xl mx-3 my-2 p-6 min-w-[300px] min-h-[150px] flex flex-col justify-between ${color}`}>
-            <span className='text-gray-900 mb-2'>{text}</span>
-            <div className='flex justify-between items-center mt-2'>
-                <small className='text-gray-500'>{date}</small>
-                <button
-                    onClick={() => handleDeleteNote(id)}
-                    className={`font-bold p-3 rounded-md ${color} hover:bg-opacity-75 flex items-center`}
-                >
-                    <img src={DeleteIcon} alt='Delete' className='w-6 h-6' />
-                </button>
+        <>
+            <div
+                className={`rounded-3xl mx-3 my-2 p-6 min-w-[300px] min-h-[150px] hover:opacity-70 flex flex-col justify-between ${color}`}
+                onClick={openFullNote}
+            >
+                <span className='text-gray-900 mb-2'>
+                    {truncateText(text, 15)}
+                </span>
+                <div className='flex justify-between items-center mt-2'>
+                    <small className='text-gray-500'>{date}</small>
+                    <button
+                        onClick={(e) => { e.stopPropagation(); handleDeleteNote(id); }}
+                        className={`font-bold p-3 rounded-md ${color} hover:bg-opacity-75 flex items-center`}
+                    >
+                        <img src={DeleteIcon} alt='Delete' className='w-6 h-6' />
+                    </button>
+                </div>
             </div>
-        </div>
+            {isFullNoteOpen && (
+                <FullSizedNote
+                    note={{ id, text, date, color }}
+                    handleSaveNote={handleSaveNote}
+                    closeFullNote={closeFullNote}
+                />
+            )}
+        </>
     );
 };
 
