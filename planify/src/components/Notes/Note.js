@@ -13,15 +13,23 @@ const Note = ({ id, text, date, handleDeleteNote, handleSaveNote, color }) => {
         setIsFullNoteOpen(false);
     };
 
+    // Function to extract plain text from HTML
+    const extractPlainText = (html) => {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        return tempDiv.textContent || tempDiv.innerText || '';
+    };
+
     // Function to get the first line of text
     const getFirstLine = (text) => {
         return text.split('\n')[0];
     };
 
-    // Function to truncate text and add ellipses if there's more content
+    // Function to truncate text to a maximum length
     const truncateText = (text, maxLength) => {
-        const firstLine = getFirstLine(text);
-        const hasMoreText = text.length > firstLine.length;
+        const plainText = extractPlainText(text);
+        const firstLine = getFirstLine(plainText);
+        const hasMoreText = plainText.length > firstLine.length;
         if (firstLine.length > maxLength) {
             return firstLine.substring(0, maxLength) + '...';
         }
