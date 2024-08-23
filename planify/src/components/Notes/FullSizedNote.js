@@ -22,7 +22,7 @@ const FullSizedNote = ({ note, handleSaveNote, closeFullNote }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-50 bg-white p-8 flex flex-col h-full">
+        <div className={`fixed inset-0 z-50 p-8 flex flex-col h-full ${note.color}`}>
             <button
                 className="self-end text-2xl font-bold text-gray-600 mb-4"
                 onClick={closeFullNote}
@@ -33,13 +33,13 @@ const FullSizedNote = ({ note, handleSaveNote, closeFullNote }) => {
                 theme="snow"
                 value={value}
                 onChange={setValue}
-                className='editor-input flex-grow mb-10' // Space below the editor
+                className='editor-input flex-grow mb-10' 
                 modules={modules}
             />
             <div className="flex justify-between items-center mt-4">
                 <small className="text-gray-500">{note.date}</small>
                 <button
-                    className="font-bold p-2 rounded-md bg-blue-100 hover:bg-blue-200"
+                    className="font-bold p-2 rounded-md bg-stone-50 hover:bg-stone-100"
                     onClick={handleSaveClick}
                 >
                     Save

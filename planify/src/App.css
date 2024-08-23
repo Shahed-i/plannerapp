@@ -59,3 +59,16 @@
   height: 100%;
   width: 100%;
 }
+
+.ql-container {
+  background-color: white; 
+  border-radius: 1rem; 
+  overflow: hidden; 
+  border-top-left-radius: 0; 
+  border-top-right-radius: 0; 
+}
+
+.ql-toolbar {
+  background-color: white; 
+  border-radius: 1rem 1rem 0 0; 
+}

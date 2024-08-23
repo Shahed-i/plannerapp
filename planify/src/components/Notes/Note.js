@@ -13,19 +13,16 @@ const Note = ({ id, text, date, handleDeleteNote, handleSaveNote, color }) => {
         setIsFullNoteOpen(false);
     };
 
-    // Function to extract plain text from HTML
     const extractPlainText = (html) => {
         const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
+        tempDiv.innerHTML = html.replace(/<br\s*\/?>/gi, '\n'); 
         return tempDiv.textContent || tempDiv.innerText || '';
     };
 
-    // Function to get the first line of text
     const getFirstLine = (text) => {
-        return text.split('\n')[0];
+        return text.split('\n')[0]; 
     };
 
-    // Function to truncate text to a maximum length
     const truncateText = (text, maxLength) => {
         const plainText = extractPlainText(text);
         const firstLine = getFirstLine(plainText);
