@@ -64,7 +64,7 @@ function AddNotePopup({ closePopup, handleAddNote }) {
                             ))}
                         </div>
                         <button
-                            className='font-bold p-2 rounded-md bg-slate-100 hover:bg-slate-50'
+                            className='font-bold p-2 rounded-md bg-stone-50 hover:bg-stone-100'
                             onClick={handleSaveClick}
                         >
                             Save
