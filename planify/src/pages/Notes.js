@@ -56,7 +56,7 @@ const Notes = () => {
         <div>
             <NavBar />
             <div className="container">
-                <h1 className="head-text px-10 py-3">This is the Notes page!</h1>
+                <h1 className="head-text px-10 py-3">Notes</h1>
                 <div className="flex ml-14 flex-wrap flex-row">
                     <NotesList
                         notes={notes}
