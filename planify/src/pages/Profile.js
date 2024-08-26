@@ -1,14 +1,27 @@
 import React from 'react';
+import ProfilePicture from '../components/Profile/ProfilePicture';
+import Stats from '../components/Profile/Stats';
+import Preferences from '../components/Profile/Preferences';
 import NavBar from '../components/NavBar';
 
-function Profile() {
-    return (
-        <div>
+
+const Profile = () => {
+  const fullName = "Neha Parmar"; // Replace with dynamic data
+  const tasksCompletedDaily = 5; // Replace with dynamic data
+  const tasksCompletedWeekly = 35; // Replace with dynamic data
+
+  return (
+    <div>
+    <div>
         <NavBar />
-        <h1>
-            This is Profile page!
-        </h1>
-        </div>
-    );
-    };
+    </div>
+    <div className="flex flex-col items-center justify-center min-h-screen overflow-auto">
+      <ProfilePicture fullName={fullName} />
+      <Stats daily={tasksCompletedDaily} weekly={tasksCompletedWeekly} />
+      <Preferences />
+    </div>
+    </div>
+  );
+};
+
 export default Profile;
