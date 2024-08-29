@@ -1,11 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../context/GlobalContext";
 import dayjs from "dayjs";
 
 export default function Week() {
-  const { selectedWeek, setDaySelected, savedEvents, labels, setSelectedEvent, setShowEventModel } = useContext(GlobalContext);
+  const { selectedWeek, setDaySelected, savedEvents, labels, setSelectedEvent, setShowEventModel, setSelectedWeek } = useContext(GlobalContext);
+  const [weekDays, setWeekDays] = useState([]);
 
-  if (!selectedWeek || !Array.isArray(selectedWeek)) return null;
+  useEffect(() => {
+    if (selectedWeek) {
+      const startOfWeek = dayjs(selectedWeek).startOf('week');
+      const days = Array.from({ length: 7 }, (_, i) => startOfWeek.add(i, 'day').toDate());
+      setWeekDays(days);
+    }
+  }, [selectedWeek]);
+
+  if (!weekDays.length) return null;
 
   const labelClassesMap = {
     Purple: "bg-purple-100",
@@ -18,23 +27,23 @@ export default function Week() {
 
   const getTasksForDay = (day) => {
     return savedEvents.filter((event) =>
-      day.isSame(dayjs(event.date), 'day')
+      dayjs(event.date).isSame(dayjs(day), 'day')
     );
   };
 
   const getLabelClass = (label) => {
-    const labelClass = labelClassesMap[label] || "bg-gray-200";
-    return labelClass;
+    return labelClassesMap[label] || "bg-gray-200";
   };
 
   const handleTaskClick = (task) => {
     setSelectedEvent(task);
     setShowEventModel(true);
+  };
 
   return (
     <div className="h-screen w-full p-4">
       <div className="grid grid-cols-7 gap-2 h-full">
-        {selectedWeek.map((day, index) => {
+        {weekDays.map((day, index) => {
           const tasks = getTasksForDay(day);
 
           return (
@@ -43,8 +52,8 @@ export default function Week() {
               className="w-full p-4 border border-pink-200 rounded-md hover:bg-pink-100 cursor-pointer"
               onClick={() => setDaySelected(day)}
             >
-              <div className="font-bold text-center">{day.format('D')}</div>
-              <div className="text-center text-sm text-gray-600">{day.format('dddd')}</div>
+              <div className="font-bold text-center">{dayjs(day).format('D')}</div>
+              <div className="text-center text-sm text-gray-600">{dayjs(day).format('dddd')}</div>
               <div className="mt-2 space-y-1">
                 {tasks.length > 0 ? (
                   tasks.map((task) => (
@@ -52,10 +61,9 @@ export default function Week() {
                       key={task.id}
                       className={`text-xs text-gray-800 p-1 rounded ${getLabelClass(task.label)}`}
                       onClick={(e) => {
-                      e.stopPropagation();
-                      handleTaskClick(task);
-                    }}
-                    
+                        e.stopPropagation(); // Prevent click event from bubbling up
+                        handleTaskClick(task);
+                      }}
                     >
                       {task.title}
                     </div>
@@ -70,4 +78,4 @@ export default function Week() {
       </div>
     </div>
   );
-}}
+}

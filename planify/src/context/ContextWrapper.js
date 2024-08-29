@@ -36,14 +36,7 @@ import React, {useState, useEffect, useReducer, useMemo } from "react";
       initEvents
     );
 
-    const [selectedWeek, setSelectedWeek] = useState(getCurrentWeek());
-
-    function getCurrentWeek(day = daySelected) {
-      const startOfWeek = day.startOf("week");
-      return Array.from({ length: 7 }).map((_, i) =>
-        startOfWeek.add(i, "day")
-      );
-    }
+    const [selectedWeek, setSelectedWeek] = useState(dayjs().startOf('week').toDate());
   
     function nextWeek() {
       setSelectedWeek((prevWeek) => prevWeek.map((day) => day.add(7, "day")));
@@ -67,7 +60,14 @@ import React, {useState, useEffect, useReducer, useMemo } from "react";
     useEffect(() => {
       localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
     }, [savedEvents]);
-  
+
+    useEffect(() => {
+      if (!selectedWeek) {
+        setSelectedWeek(dayjs().startOf('week').toDate());
+      }
+    }, [selectedWeek]);
+
+
     useEffect(() => {
       setLabels((prevLabels) => {
         return [...new Set(savedEvents.map((evt) => evt.label))].map(
