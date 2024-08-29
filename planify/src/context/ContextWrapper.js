@@ -29,11 +29,31 @@ import React, {useState, useEffect, useReducer, useMemo } from "react";
     const [showEventModel, setShowEventModel] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [labels, setLabels] = useState([]);
+    const [view, setView] = useState("month");
     const [savedEvents, dispatchCalEvent] = useReducer(
       savedEventsReducer,
       [],
       initEvents
     );
+
+    const [selectedWeek, setSelectedWeek] = useState(getCurrentWeek());
+
+    function getCurrentWeek(day = daySelected) {
+      const startOfWeek = day.startOf("week");
+      return Array.from({ length: 7 }).map((_, i) =>
+        startOfWeek.add(i, "day")
+      );
+    }
+  
+    function nextWeek() {
+      setSelectedWeek((prevWeek) => prevWeek.map((day) => day.add(7, "day")));
+      setDaySelected((prevDay) => prevDay.add(7, "day"));
+    }
+  
+    function prevWeek() {
+      setSelectedWeek((prevWeek) => prevWeek.map((day) => day.subtract(7, "day")));
+      setDaySelected((prevDay) => prevDay.subtract(7, "day"));
+    }
   
     const filteredEvents = useMemo(() => {
       return savedEvents.filter((evt) =>
@@ -107,6 +127,12 @@ import React, {useState, useEffect, useReducer, useMemo } from "react";
           updateLabel,
           filteredEvents,
           clearAllLabels,
+          view,
+          setView,
+          selectedWeek,
+          setSelectedWeek,
+          nextWeek,
+          prevWeek,
         }}
       >
         {props.children}

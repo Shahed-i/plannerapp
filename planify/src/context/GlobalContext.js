@@ -18,6 +18,12 @@ const GlobalContext = React.createContext({
   updateLabel: () => {},
   filteredEvents: [],
   clearAllLabels: () => {},
+  view: "month",
+  setView: () => {}, 
+  selectedWeek: null, 
+  setSelectedWeek: () => {}, 
+  nextWeek: () => {},
+  prevWeek: () => {},
 });
 
 export default GlobalContext;

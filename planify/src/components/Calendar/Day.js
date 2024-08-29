@@ -3,12 +3,12 @@ import React, { useContext, useState, useEffect } from "react";
 import GlobalContext from "../../context/GlobalContext";
 
 const labelClassesMap = {
-  Purple: "bg-purple-300",
-  Orange: "bg-orange-300",
-  Blue: "bg-blue-300",
-  Green: "bg-green-300",
-  Pink: "bg-pink-300",
-  Yellow: "bg-yellow-300",
+  Purple: "bg-purple-100",
+  Orange: "bg-orange-100",
+  Blue: "bg-blue-100",
+  Green: "bg-green-100",
+  Pink: "bg-pink-100",
+  Yellow: "bg-yellow-100",
 };
 
 
