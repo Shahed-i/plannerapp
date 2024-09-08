@@ -11,7 +11,7 @@ const Profile = () => {
   const tasksCompletedWeekly = 35; // Replace with dynamic data
 
   return (
-    <div>
+    <div className="bg-neutral-50 min-h-screen">
     <div>
         <NavBar />
     </div>

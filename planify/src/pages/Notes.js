@@ -53,7 +53,7 @@ const Notes = () => {
     };
 
     return (
-        <div>
+        <div className="bg-neutral-50 min-h-screen">
             <NavBar />
             <div className="container">
                 <h1 className="head-text px-10 py-3">Notes</h1>

@@ -85,3 +85,23 @@
   animation: tiltLeftRight 0.25s ease-in-out infinite;
 }
 
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideInFromLeft 0.5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.pink-gradient-text {
+  background: linear-gradient(to right, #e7477f, #f39e9b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
