@@ -2,7 +2,7 @@ import React from 'react';
 
 function Task({ task, onEdit, onDelete }) {
     return (
-        <div className="flex flex-row justify-between w-full bg-orange-100 hover:bg-orange-150 h-8 px-2">
+        <div className="flex flex-row justify-between w-full bg-pink-100 hover:bg-pink-200 h-8 px-2">
             <span className="flex-1 flex items-center pl-5 cursor-pointer" onClick={onEdit}>{task.name}</span>
             <span className="flex-1 flex items-center pl-5 cursor-pointer" onClick={onEdit}>{task.date}</span>
             <span className="flex-1 flex items-center pl-5 cursor-pointer" onClick={onEdit}>{task.description}</span>

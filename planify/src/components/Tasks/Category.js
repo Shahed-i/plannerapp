@@ -62,7 +62,7 @@ function Category({ category, goBackToCategories }) {
             </div>
             <div className="flex flex-col items-center w-full">
                 <div className="flex flex-col w-full">
-                    <div className="flex flex-row justify-between w-full bg-brown p-2 rounded-t-lg">
+                    <div className="flex flex-row justify-between w-full bg-pink-300 p-2 rounded-t-lg">
                         <span className="flex-1 flex items-center pl-5 font-bold">Task</span>
                         <span className="flex-1 flex items-center font-bold">Date</span>
                         <span className="flex-1 flex items-center font-bold">Description</span>
@@ -79,7 +79,7 @@ function Category({ category, goBackToCategories }) {
                         />
                     ))}
                     <div 
-                        className="flex flex-row justify-between w-full bg-orange-100 hover:bg-orange-150 p-2 cursor-pointer rounded-b-lg"
+                        className="flex flex-row justify-between w-full bg-pink-100 hover:bg-pink-200 p-2 cursor-pointer rounded-b-lg"
                         onClick={() => {
                             setTaskToEdit(null);
                             setShowForm(true);
