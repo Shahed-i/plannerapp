@@ -52,8 +52,9 @@ export default function Week() {
               className="w-full p-4 border border-pink-200 rounded-md hover:bg-pink-100 cursor-pointer"
               onClick={() => setDaySelected(day)}
             >
-              <div className="font-bold text-center">{dayjs(day).format('D')}</div>
-              <div className="text-center text-sm text-gray-600">{dayjs(day).format('dddd')}</div>
+            <div className="font-bold text-center overflow-hidden text-ellipsis whitespace-nowrap">{dayjs(day).format('D')}</div>
+            <div className="text-center text-sm text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap"> {dayjs(day).format('dddd')}</div>
+
               <div className="mt-2 space-y-1">
                 {tasks.length > 0 ? (
                   tasks.map((task) => (

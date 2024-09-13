@@ -39,9 +39,10 @@ export default function Day({ day, rowIdx }) {
     <div className="border border-pink-100 flex flex-col">
       <header className="flex flex-col items-center">
         {rowIdx === 0 && (
-          <p className="text-sm mt-1">
-            {day.format("ddd").toUpperCase()}
+          <p className="text-sm mt-1 overflow-hidden text-ellipsis whitespace-nowrap">
+          {day.format("ddd").toUpperCase()}
           </p>
+
         )}
         <p
           className={`text-sm p-1 my-1 text-center  ${getCurrentDayClass()}`}
