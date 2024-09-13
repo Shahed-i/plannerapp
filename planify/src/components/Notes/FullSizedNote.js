@@ -33,7 +33,7 @@ const FullSizedNote = ({ note, handleSaveNote, closeFullNote }) => {
                 theme="snow"
                 value={value}
                 onChange={setValue}
-                className='editor-input flex-grow mb-10' 
+                className='editor-input flex-grow mb-10 quill-editor' 
                 modules={modules}
             />
             <div className="flex justify-between items-center mt-4">
