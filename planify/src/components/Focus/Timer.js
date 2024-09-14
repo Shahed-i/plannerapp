@@ -1,4 +1,3 @@
-// src/components/Focus.js
 import React, { useState, useEffect } from 'react';
 import Settings from './Settings';
 
@@ -10,11 +9,11 @@ const defaultSettings = {
 };
 
 const customColors = {
-    breakColor: '#FC9CDB', 
-    focusColor: '#FF69B4',
-  };
+  breakColor: '#FC9CDB', 
+  focusColor: '#fda4af',
+};
 
-const Focus = () => {
+const Timer = () => {
   const [timeLeft, setTimeLeft] = useState(defaultSettings.work);
   const [isActive, setIsActive] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
@@ -67,12 +66,15 @@ const Focus = () => {
   };
 
   // Circular progress calculations
-  const circleRadius = 45;
+  const circleRadius = 45; 
   const circleCircumference = 2 * Math.PI * circleRadius;
   const totalDuration = isBreak ? settings.shortBreak : settings.work;
   const progress = (timeLeft / totalDuration) * 100;
   const strokeDasharray = circleCircumference;
   const strokeDashoffset = circleCircumference - (circleCircumference * (progress / 100));
+
+  // Calculate font size as a percentage of the circle's diameter
+  const fontSize = circleRadius * 0.5; // Adjust this multiplier to fit the text better
 
   // Status text
   const statusText = isBreak
@@ -82,12 +84,12 @@ const Focus = () => {
     : 'Focus Time';
 
   return (
-    <div className="flex flex-col items-center p-4 bg-white rounded-lg shadow-lg">
-      <div className="relative flex items-center justify-center mb-6">
+    <div className="flex flex-col items-center p-4 rounded-lg">
+      <div className="relative flex items-center justify-center mb-6 w-full max-w-xs">
         <svg
-          className="w-40 h-40"
           viewBox="0 0 100 100"
           xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-auto max-w-xs" // Responsive width
         >
           {/* Static background circle */}
           <circle
@@ -110,27 +112,30 @@ const Focus = () => {
             strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
             transform="rotate(-90 50 50)"
+      
           />
           {/* Time text */}
           <text
             x="50"
             y="50"
             textAnchor="middle"
-            dy="0.3em"
-            className="text-2xl font-mono text-gray-800"
+            dominantBaseline="middle"
+            fontSize={fontSize}
+            fill="white" // Ensure text color is white
+            className="font-mono"
           >
             {formatTime(timeLeft)}
           </text>
         </svg>
       </div>
-      <div className="text-lg font-semibold mb-4">
+      <div className="text-base sm:text-lg md:text-xl font-semibold mb-4 text-white">
         {statusText}
       </div>
-      <div className="flex space-x-4 mb-4">
+      <div className="flex flex-wrap justify-center gap-4 mb-4">
         <button
           onClick={toggleTimer}
           className={`px-4 py-2 text-white font-semibold rounded-md transition-colors 
-                      ${isActive ? 'bg-pink-500 hover:bg-pink-400' : 'bg-pink-500 hover:bg-pibk-400'}`}
+                      ${isActive ? 'bg-pink-500 hover:bg-pink-400' : 'bg-pink-500 hover:bg-pink-400'}`}
         >
           {isActive ? 'Pause' : 'Start'}
         </button>
@@ -157,4 +162,4 @@ const Focus = () => {
   );
 };
 
-export default Focus;
+export default Timer;

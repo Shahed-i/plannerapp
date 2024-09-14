@@ -11,9 +11,10 @@ const Settings = ({ isOpen, onClose, settings, setSettings }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // Ensure the value cannot go below 1
     setLocalSettings((prev) => ({
       ...prev,
-      [name]: value
+      [name]: Math.max(1, Number(value))
     }));
   };
 
