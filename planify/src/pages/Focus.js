@@ -19,12 +19,10 @@ import bg11 from '../focus_backgrounds/bg11.jpg';
 const backgroundImages = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9, bg10, bg11]; // Add more images as needed
 
 function Focus() {
-    // Get the saved background from localStorage or default to bg1
     const savedBackground = localStorage.getItem('selectedBackground') || bg1;
     const [selectedBackground, setSelectedBackground] = useState(savedBackground);
     const [isBackgroundPickerOpen, setIsBackgroundPickerOpen] = useState(false); // Declare the state for popup
 
-    // Save the selected background to localStorage whenever it changes
     useEffect(() => {
         localStorage.setItem('selectedBackground', selectedBackground);
     }, [selectedBackground]);
@@ -35,7 +33,7 @@ function Focus() {
             <NavBar />
 
             <div
-                className="pt-20 min-h-screen relative" // Adjust the top padding to match the height of the NavBar
+                className="pt-20 min-h-screen relative" 
                 style={{
                     backgroundImage: `url(${selectedBackground})`,
                     backgroundSize: 'cover',
@@ -49,10 +47,11 @@ function Focus() {
                 {/* Background selection button */}
                 <button
                     onClick={() => setIsBackgroundPickerOpen(true)} // Open the background picker
-                    className="absolute top-4 right-4 bg-gray-700 text-white px-4 py-2 rounded-lg"
+                    className="absolute top-4 right-4 bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
                 >
                     Change Background
                 </button>
+
 
                 {/* Background Picker Component */}
                 {isBackgroundPickerOpen && (
