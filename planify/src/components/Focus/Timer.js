@@ -121,7 +121,7 @@ const Timer = () => {
             textAnchor="middle"
             dominantBaseline="middle"
             fontSize={fontSize}
-            fill="white" // Ensure text color is white
+            fill="white" 
             className="font-mono"
           >
             {formatTime(timeLeft)}
