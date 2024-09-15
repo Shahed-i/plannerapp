@@ -10,6 +10,7 @@ const Profile = () => {
 
   // Default values in case the user isn't logged in yet
   const fullName = user ? user.name : "There";
+  const profilePicUrl = user ? user.picture : null; // Get the profile picture from user object
   const tasksCompletedDaily = 5; // Replace with dynamic data
   const tasksCompletedWeekly = 35; // Replace with dynamic data
 
@@ -19,12 +20,12 @@ const Profile = () => {
         <NavBar />
       </div>
       <div className="flex flex-col items-center justify-center min-h-screen overflow-auto">
-        <ProfilePicture fullName={fullName} />
+        <ProfilePicture fullName={fullName} profilePicUrl={profilePicUrl} />
         <Stats daily={tasksCompletedDaily} weekly={tasksCompletedWeekly} />
         <Preferences />
         {/* Google Login Button */}
         <div className="mt-6">
-          <GoogleLogin setUser={setUser} /> {/* Pass setUser to GoogleLogin */}
+          <GoogleLogin user={user} setUser={setUser} /> {/* Pass user and setUser */}
         </div>
       </div>
     </div>
