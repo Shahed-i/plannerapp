@@ -21,8 +21,8 @@ const Profile = () => {
       </div>
       <div className="flex flex-col items-center justify-center min-h-screen overflow-auto">
         <ProfilePicture fullName={fullName} profilePicUrl={profilePicUrl} />
-        <Stats daily={tasksCompletedDaily} weekly={tasksCompletedWeekly} />
-        <Preferences />
+        {/* <Stats daily={tasksCompletedDaily} weekly={tasksCompletedWeekly} />
+        <Preferences /> */}
         {/* Google Login Button */}
         <div className="mt-6">
           <GoogleLogin user={user} setUser={setUser} /> {/* Pass user and setUser */}
