@@ -83,7 +83,7 @@ function Tasks() {
             {!selectedCategory ? (
                 <>
                     <div className="px-10 py-3 flex flex-col">
-                        <h1 className="head-text mb-3 slide-in">Hello <span className="pink-gradient-text font-semibold drop-shadow-sm">Name!</span></h1>
+                        <h1 className="head-text mb-3 slide-in">Hello <span className="pink-gradient-text font-semibold drop-shadow-sm">Neha!</span></h1>
                         <div className="flex items-center justify-between">
                             <h3 className="subhead-text text-gray-600">Categories</h3>
                             <button 
